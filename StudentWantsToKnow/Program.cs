@@ -33,28 +33,17 @@ namespace StudentWantsToKnow
                 // check Udemy every 10 minutes
                 int sleeptime = 1000 * 60 * 10;
 
-                //Console.WriteLine("1. Up to 4 Questions");
-                //Console.WriteLine("2. Messages");
-                //Console.WriteLine("3. Something I can't think of now");
-                //Console.WriteLine("Q. Quit");
-                //string input = Console.In.ReadLine();
-
-                //if (input.ToUpper() == "Q") break;
-
-                //if (input.ToUpper() == "1")
-                //{
+                Console.WriteLine("Checking questions");
+                // replace these Udemy course IDs with the courses you want to check
                 GetQuestions(802578, "AZ-300");
                 GetQuestions(802576, "AZ-103");
                 GetQuestions(802574, "AZ-203");
                 GetQuestions(2394982, "AZ-900");
                 GetQuestions(2278883, "AZ-301");
                 GetQuestions(1403814, "Serverless");
-                //}
 
-                //if (input.ToUpper() == "2")
-                //{
+                Console.WriteLine("Checking messages");
                 GetMessages();
-                //}
 
                 Console.WriteLine("Thats all! Sleeping at " + DateTime.Now.ToLocalTime());
                 System.Threading.Thread.Sleep(sleeptime);
