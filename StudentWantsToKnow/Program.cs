@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -24,14 +25,17 @@ namespace StudentWantsToKnow
         const int SW_HIDE = 0;
         const int SW_SHOW = 5;
 
-        static string UDEMY_TOKEN = "<Use what Udemy gives you>";
-        static string INSTRUCTOR_NAME = "Scott Duffy"; // associated with the token
+        static readonly string UDEMY_TOKEN = ConfigurationManager.AppSettings["UDEMY_TOKEN"];
+        static readonly string INSTRUCTOR_NAME = ConfigurationManager.AppSettings["INSTRUCTOR_NAME"]; // associated with the token
 
         static void Main(string[] args)
         {
+            // check Udemy every 30 minutes
+            int TIMER = 30;
+            int.TryParse(ConfigurationManager.AppSettings["TIMER"], out TIMER);
+            int sleeptime = 1000 * 60 * TIMER;
+
             while (true) {
-                // check Udemy every 10 minutes
-                int sleeptime = 1000 * 60 * 10;
 
                 Console.WriteLine("Checking questions");
                 // replace these Udemy course IDs with the courses you want to check
